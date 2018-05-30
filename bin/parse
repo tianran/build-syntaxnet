@@ -1,0 +1,33 @@
+#!/bin/bash
+
+PARSER_EVAL="python $HOME/syntaxnet/parser_eval.py"
+MODEL_DIR=$HOME/syntaxnet/parsey_mcparseface
+INPUT_FORMAT=stdin
+REDIRECT_STDERR="2>/dev/null"
+for arg in "$@"; do
+  if [[ $arg == "-t" ]]; then INPUT_FORMAT=stdin-tokenized; fi
+  if [[ $arg == "-c" ]]; then INPUT_FORMAT=stdin-conll; fi
+  if [[ $arg == "-v" ]]; then REDIRECT_STDERR=; fi
+done
+
+eval "($PARSER_EVAL \
+  --input=$INPUT_FORMAT \
+  --hidden_layer_sizes=64 \
+  --arg_prefix=brain_tagger \
+  --graph_builder=structured \
+  --task_context=$MODEL_DIR/context.pbtxt \
+  --model_path=$MODEL_DIR/tagger-params \
+  --slim_model \
+  --batch_size=1024 \
+   | \
+ $PARSER_EVAL \
+  --input=stdin-conll \
+  --hidden_layer_sizes=512,512 \
+  --arg_prefix=brain_parser \
+  --graph_builder=structured \
+  --task_context=$MODEL_DIR/context.pbtxt \
+  --model_path=$MODEL_DIR/parser-params \
+  --slim_model \
+  --batch_size=1024
+) $REDIRECT_STDERR"
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PARSER_EVAL=$HOME/syntaxnet/parser_eval.py
+MODEL_DIR=$HOME/syntaxnet/parsey_mcparseface
+
+python $PARSER_EVAL \
+  --input=stdin-conll \
+  --hidden_layer_sizes=512,512 \
+  --arg_prefix=brain_parser \
+  --graph_builder=structured \
+  --task_context=$MODEL_DIR/context.pbtxt \
+  --model_path=$MODEL_DIR/parser-params \
+  --slim_model \
+  --batch_size=1024 \
+2> /dev/null
+
