@@ -236,7 +236,8 @@ class GreedyParser(object):
       parameter or averaged parameter
     """
     if name not in self.params:
-      step = tf.cast(self.GetStep(), tf.float32)
+      with tf.device('/cpu:0'):
+        step = tf.cast(self.GetStep(), tf.float32)
       # Put all parameters and their initializing ops in their own scope
       # irrespective of the current scope (training or eval).
       with tf.name_scope(self._param_scope):
@@ -323,7 +324,7 @@ class GreedyParser(object):
     """
     assert len(feature_endpoints) == self._feature_size
 
-    with tf.device(self._nndev):
+    with tf.device('/cpu:0'):
       # Create embedding layer.
       embeddings = []
       for i in range(self._feature_size):
@@ -333,7 +334,7 @@ class GreedyParser(object):
                                              self._embedding_sizes[i],
                                              i,
                                              return_average=return_average))
-
+    with tf.device(self._nndev):
       last_layer = tf.concat(1, embeddings)
       last_layer_size = self.embedding_size
 
