@@ -40,6 +40,24 @@ If choose GPU support and CUDA is not installed at `/usr/local`, edit file `thir
 Now build and install the python package:
 
     $ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
-    $ bazel-bin/tensorflow/tools/pip_package/build_pip_package build/tensorflow_pkg
+    $ bazel-bin/tensorflow/tools/pip_package/build_pip_package ../build/tensorflow_pkg
+    $ cd ..
     $ pip install --ignore-installed --upgrade build/tensorflow_pkg/tensorflow-0.10.0-py2-none-any.whl
-  
+
+## Build Syntaxnet:
+
+    $ cd syntaxnet-goodold-repo
+    $ bazel build -c opt //syntaxnet:parser_ops.so
+    $ cp bazel-bin/syntaxnet/parser_ops.so ../syntaxnet
+    $ cp -r syntaxnet/models/parsey_mcparseface ../syntaxnet
+    $ cd ..
+
+## Install Syntaxnet:
+
+    $ mv bin/* ~/bin
+    $ mv syntaxnet ~
+    $ mv ~/syntaxnet/parsey_mcparseface_context.pbtxt ~/syntaxnet/parsey_mcparseface/context.pbtxt
+
+## Check:
+
+    $ echo "John loves Mary." | parse -v
