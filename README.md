@@ -57,15 +57,14 @@ Install the python package:
 
     $ cd syntaxnet-goodold-repo
     $ bazel build -c opt //syntaxnet:parser_ops.so
-    $ cp bazel-bin/syntaxnet/parser_ops.so ../syntaxnet
-    $ cp -r syntaxnet/models/parsey_mcparseface ../syntaxnet
-    $ cd ..
 
 ## Install Syntaxnet:
 
-    $ mv bin/* ~/bin
-    $ mv syntaxnet ~
+    $ cp -r ../syntaxnet ~
+    $ cp bazel-bin/syntaxnet/parser_ops.so ~/syntaxnet/
+    $ cp -r syntaxnet/models/parsey_mcparseface ~/syntaxnet/
     $ mv ~/syntaxnet/parsey_mcparseface_context.pbtxt ~/syntaxnet/parsey_mcparseface/context.pbtxt
+    $ cp bin/* ~/bin
 
 ## Check:
 
