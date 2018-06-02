@@ -41,11 +41,11 @@ Now build the python package:
 
 * with GPU:
 
-    $ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+    `$ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package`
 
 * without GPU:
 
-    $ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
+    `$ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package`
 
 Install the python package:
 
