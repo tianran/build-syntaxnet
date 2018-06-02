@@ -29,7 +29,7 @@ add `$HOME/bin` to `PATH`
 ## Config and install Tensorflow:
 
     $ cd tensorflow-0.10.0
-    $ . configure
+    $ bash ./configure
 
 If choose GPU support and CUDA is not installed at `/usr/local`, edit file `third_party/gpus/crosstool/CROSSTOOL.tpl`:
 
@@ -37,9 +37,18 @@ If choose GPU support and CUDA is not installed at `/usr/local`, edit file `thir
     # cxx_builtin_include_directory: "/usr/local/cuda%{cuda_version}/include"
     cxx_builtin_include_directory: "/path/to/cuda/include"
 
-Now build and install the python package:
+Now build the python package:
+
+* with GPU:
 
     $ bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+
+* without GPU:
+
+    $ bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
+
+Install the python package:
+
     $ bazel-bin/tensorflow/tools/pip_package/build_pip_package ../build/tensorflow_pkg
     $ cd ..
     $ pip install --ignore-installed --upgrade build/tensorflow_pkg/tensorflow-0.10.0-py2-none-any.whl
