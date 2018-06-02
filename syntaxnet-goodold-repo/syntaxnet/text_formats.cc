@@ -159,8 +159,8 @@ class CoNLLSyntaxFormat : public DocumentFormat {
       if (add_pos_as_attribute_) AddPosAsAttribute(token);
     }
 
-    if (sentence->token_size() > 50) {
-      // If token_size() is larger than 50, we skip this sentence by
+    if (sentence->token_size() > 100) {
+      // If token_size() is larger than 100, we skip this sentence by
       // replacing the tokens with a dummy
       sentence->clear_token();
       Token *token = sentence->add_token();
@@ -175,7 +175,7 @@ class CoNLLSyntaxFormat : public DocumentFormat {
       sentence->set_text("#DUMMY#");
       sentence->SetExtension(note, 
           tensorflow::strings::StrCat(
-          "#skip because token_size() > 50\n#", text, "\n"));
+          "#skip because token_size() > 100\n#", text, "\n"));
       sentences->push_back(sentence);
     } else if (sentence->token_size() > 0) {
       sentence->set_docid(key);
@@ -362,8 +362,8 @@ class TokenizedTextFormat : public DocumentFormat {
       token->set_end(end);
     }
 
-    if (sentence->token_size() > 50) {
-      // If token_size() is larger than 50, we skip this sentence by
+    if (sentence->token_size() > 100) {
+      // If token_size() is larger than 100, we skip this sentence by
       // replacing the tokens with a dummy
       sentence->clear_token();
       Token *token = sentence->add_token();
@@ -374,7 +374,7 @@ class TokenizedTextFormat : public DocumentFormat {
       sentence->set_text("#DUMMY#");
       sentence->SetExtension(note,
           tensorflow::strings::StrCat(
-          "#skip because token_size() > 50\n#", text, "\n"));
+          "#skip because token_size() > 100\n#", text, "\n"));
       sentences->push_back(sentence);
     } else if (sentence->token_size() > 0) {
       sentence->set_docid(key);
@@ -434,8 +434,8 @@ class UntokenizedTextFormat : public TokenizedTextFormat {
       token->set_end(start - 1);
     }
 
-    if (sentence->token_size() > 50) {
-      // If token_size() is larger than 50, we skip this sentence by
+    if (sentence->token_size() > 100) {
+      // If token_size() is larger than 100, we skip this sentence by
       // replacing the tokens with a dummy
       sentence->clear_token();
       Token *token = sentence->add_token();
@@ -446,7 +446,7 @@ class UntokenizedTextFormat : public TokenizedTextFormat {
       sentence->set_text("#DUMMY#");
       sentence->SetExtension(note,
           tensorflow::strings::StrCat(
-          "#skip because token_size() > 50\n#", value, "\n"));
+          "#skip because token_size() > 100\n#", value, "\n"));
       sentences->push_back(sentence);
     } else if (sentence->token_size() > 0) {
       sentence->set_docid(key);
