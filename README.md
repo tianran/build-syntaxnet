@@ -49,6 +49,7 @@ Now build the python package:
 
 Install the python package:
 
+    $ mkdir -p ../build/tensorflow_pkg
     $ bazel-bin/tensorflow/tools/pip_package/build_pip_package ../build/tensorflow_pkg
     $ cd ..
     $ pip install --ignore-installed --upgrade build/tensorflow_pkg/tensorflow-0.10.0-py2-none-any.whl
