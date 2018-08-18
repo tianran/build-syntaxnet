@@ -54,7 +54,7 @@ def tf_workspace(path_prefix = "", tf_repo_name = ""):
 
   native.new_http_archive(
     name = "jpeg_archive",
-    url = "http://www.ijg.org/files/jpegsrc.v9a.tar.gz",
+    url = "https://download.videolan.org/contrib/jpeg/jpegsrc.v9a.tar.gz",
     sha256 = "3a753ea48d917945dd54a2d97de388aa06ca2eb1066cbfdc6652036349fe05a7",
     build_file = path_prefix + "jpeg.BUILD",
   )
