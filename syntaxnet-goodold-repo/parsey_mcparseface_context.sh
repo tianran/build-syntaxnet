@@ -1,3 +1,8 @@
+#!/bin/bash
+
+PREFIX=$1
+
+cat >${PREFIX}/parsey_mcparseface/context.pbtxt <<-EOF
 Parameter {
   name: "brain_parser_embedding_dims"
   value: "32;32;64"
@@ -133,37 +138,37 @@ Parameter {
 input {
   name: "tag-map"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/tag-map"
+    file_pattern: "${PREFIX}/parsey_mcparseface/tag-map"
   }
 }
 input {
   name: "tag-to-category"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/fine-to-universal.map"
+    file_pattern: "${PREFIX}/parsey_mcparseface/fine-to-universal.map"
   }
 }
 input {
   name: "word-map"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/word-map"
+    file_pattern: "${PREFIX}/parsey_mcparseface/word-map"
   }
 }
 input {
   name: "label-map"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/label-map"
+    file_pattern: "${PREFIX}/parsey_mcparseface/label-map"
   }
 }
 input {
   name: "prefix-table"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/prefix-table"
+    file_pattern: "${PREFIX}/parsey_mcparseface/prefix-table"
   }
 }
 input {
   name: "suffix-table"
   Part {
-    file_pattern: "/home/tianran/syntaxnet/parsey_mcparseface/suffix-table"
+    file_pattern: "${PREFIX}/parsey_mcparseface/suffix-table"
   }
 }
 input {
@@ -194,3 +199,4 @@ input {
     file_pattern: '-'
   }
 }
+EOF

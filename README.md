@@ -62,9 +62,9 @@ Install the python package:
 ## Install Syntaxnet:
 
     $ cp -r ../syntaxnet ~
-    $ cp bazel-bin/syntaxnet/parser_ops.so ~/syntaxnet/
-    $ cp -r syntaxnet/models/parsey_mcparseface ~/syntaxnet/
-    $ mv ~/syntaxnet/parsey_mcparseface_context.pbtxt ~/syntaxnet/parsey_mcparseface/context.pbtxt
+    $ cp bazel-bin/syntaxnet/parser_ops.so ~/syntaxnet
+    $ cp -r syntaxnet/models/parsey_mcparseface ~/syntaxnet
+    $ ./parsey_mcparseface_context.sh ~/syntaxnet
     $ cp ../bin/* ~/bin
 
 ## Check:
